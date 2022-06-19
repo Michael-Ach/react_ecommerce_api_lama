@@ -27,6 +27,13 @@ app.use("/api/products", productRoute);
 app.use("/api/carts", cartRoute);
 app.use("/api/orders", orderRoute);
 app.use("/api/checkout", stripeRoute);
+app.use("/", (req, res, next) => {
+  res.json({ 
+    msg: "Welcome, API endpoints are ready",
+    testEndpoint: "{DOMAIN_NAME}/api/products"
+  });
+  next();
+});
 
 app.listen(process.env.PORT || 5000, () => {
   console.log("Server is running!");
